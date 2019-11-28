@@ -1,0 +1,109 @@
+---
+title: "Women in Parliament - Tidy Data"
+author: "Your Name Here"
+date: "`r format(Sys.time(), '%a %d %b %Y (%H:%M:%S)')`"
+output:
+  html_document:
+    highlight: tango
+    theme: united
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+```
+
+# Objectives
+
+*Explore the geographical and time trends for the percentage of women[^objNote] in 
+national parliaments.*
+
+# Understanding the Data
+
+## The World Bank Data 
+
+The raw data for *"Proportion of seats held by women in national parliaments"* 
+includes the percentage of women in parliament (_"single or lower parliamentary chambers 
+only"_) by country (region) and year. It can be downloaded from:[^wbstats]
+
+- https://data.worldbank.org/indicator/SG.GEN.PARL.ZS 
+
+As part of its "open data" mission the World Bank offers _"free and open access 
+to global development data"_ kindly licensed under the "Creative Commons Attribution 
+4.0 (CC-BY 4.0)".[^CC4]
+
+## Source Data
+
+The data originates from the "Inter-Parliamentary Union" (IPU)[^ipuwebsite] which
+provides an *_"Archive of statistical data on the percentage of women in 
+national parliaments"_* going back to 1997 on a monthly basis:
+
+- http://archive.ipu.org/wmn-e/classif-arc.htm
+
+The World Bank data is for “single or lower parliamentary chambers only”, while 
+the IPU also presents data for “Upper Houses or Senates”. Moreover, the IPU provides 
+the actual numbers used to calculate the percentages (which the World Bank does not).
+
+## Data limitations
+
+Take caution when interpreting these data, as parliamentary systems vary from country 
+to country, and in some cases over time. Some of the issues to consider include:
+
+- Who has, and who does not have, the right to become a Member of Parliament (MP)?
+- How does someone become an MP? Through democratic elections? How is "democratic
+election" defined? 
+- What is the real power of MPs and their parliament? Can MPs make a difference?
+
+## Data definitions & assumptions
+
+### "Women"
+
+The definition for “women” is not given, so we will assume that it refers to a 
+binary classification for gender (sex).
+
+### "Country (Region)"
+
+The definition of countries and regions can change over time.  (e.g. formation of new
+countries after conflicts, new member states joining a pre-existing collective). 
+How are these changes reflected in the data? How do they affect the interpretation? 
+
+## Pro tip
+
+Understand the limitations of your data before anybody else points them out to you. 
+
+# About the data file
+
+The data is stored in a file called: ``r list.files(path = here("data"), pattern = "^API")``
+
+To simplify things we have copied it to `WB-WiP.csv` (which also allows us to 
+maintain the original file in case something goes wrong).
+
+## Pro tip
+
+Always keep a backup copy of the data. Alternatively, set the data file(s) to 
+“read-only” to protect it from being overwritten or modified.
+
+# Importing the data
+
+Based on our findings above, we can "skip" the first four lines and treat the
+fifth line as column (variable) names. Also note the use of the `check.names`
+argument to ensure that the column names are compliant in R.
+
+```{r readData, collapse=TRUE}
+library(data.table)
+library(here)
+wip <- fread(here("data", "WB-WiP.csv"), 
+             skip = 4, header = TRUE,
+             check.names = TRUE)
+```
+
+# Continue from here...
