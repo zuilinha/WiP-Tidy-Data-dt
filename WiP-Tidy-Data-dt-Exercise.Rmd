@@ -22,9 +22,14 @@ knitr::opts_chunk$set(echo = TRUE)
 library(here)
 ```
 
+```{r imageStart, echo=FALSE, out.width="20%"}
+knitr::include_graphics("images/Women_in_Parliament_hex.svg")
+```
+
+
 # Objectives
 
-*Explore the geographical and time trends for the percentage of women[^objNote] in 
+*Explore the geographical and time trends for the percentage of women in 
 national parliaments.*
 
 # Understanding the Data
@@ -33,13 +38,13 @@ national parliaments.*
 
 The raw data for *"Proportion of seats held by women in national parliaments"* 
 includes the percentage of women in parliament (_"single or lower parliamentary chambers 
-only"_) by country (region) and year. It can be downloaded from:[^wbstats]
+only"_) by country (region) and year. It can be downloaded from:
 
 - https://data.worldbank.org/indicator/SG.GEN.PARL.ZS 
 
 As part of its "open data" mission the World Bank offers _"free and open access 
 to global development data"_ kindly licensed under the "Creative Commons Attribution 
-4.0 (CC-BY 4.0)".[^CC4]
+4.0 (CC-BY 4.0)".
 
 ## Source Data
 
@@ -107,3 +112,14 @@ wip <- fread(here("data", "WB-WiP.csv"),
 ```
 
 # Continue from here...
+
+
+
+
+
+
+
+```{r imageEnd, echo=FALSE, out.width="60%"}
+knitr::include_graphics("images/Women_in_Parliament_rect.svg")
+```
+
